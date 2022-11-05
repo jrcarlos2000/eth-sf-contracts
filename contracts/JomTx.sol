@@ -17,8 +17,9 @@ contract JomTx {
     /// @notice Thrown when attempting to reuse a nullifier
     error InvalidNullifier();
     error UserVerified();
+    error UserNotVerified();
 
-    event transactionSubmitted(uint256 identityCommitment, string ipfs_uri, address buyer_addr);
+    event transactionSubmitted(uint256 identityCommitment, string ipfs_uri, address buyer_addr, string detail);
 
     /// @dev The WorldID instance that will be used for verifying proofs
     IWorldID internal immutable worldId;
@@ -48,7 +49,8 @@ contract JomTx {
 
     /// @dev if store is verified
     function submitNonVerifiedUserTx (
-        string memory ipfs_uri, 
+        string memory ipfs_uri,
+        string memory detail,
         uint256 storeSignal,
         uint256 root,
         uint256 nullifierHash,
@@ -66,12 +68,13 @@ contract JomTx {
             proof
         );
 
-        emit transactionSubmitted(nullifierHash, ipfs_uri, address(0));
+        emit transactionSubmitted(nullifierHash, ipfs_uri, address(0),detail);
     }
 
     /// @dev iff user and store are both verified
     function submitVerifiedTx (
         string memory ipfs_uri,
+        string memory detail,
         address buyer_addr,
         address storeSignal,
         uint256 root,
@@ -93,7 +96,7 @@ contract JomTx {
         storeTransactions[nullifierHash].push(ipfs_uri);
         userTransactions[buyer_addr].push(ipfs_uri);
 
-        emit transactionSubmitted(nullifierHash, ipfs_uri, buyer_addr);
+        emit transactionSubmitted(nullifierHash, ipfs_uri, buyer_addr,detail);
     }
 
     function verifyUser (
@@ -116,6 +119,25 @@ contract JomTx {
 
         nullifierHashes[nullifierHash] = true;
         registeredUser[msg.sender] = true;
+    }
+
+    function verifyForTaxDeclaration(
+        address callerAddr, 
+        uint256 root,
+        uint256 nullifierHash,
+        uint256[8] calldata proof
+    ) external {
+        if (registeredUser[msg.sender]) revert UserNotVerified();
+
+        worldId.verifyProof(
+            root,
+            groupId,
+            abi.encodePacked(callerAddr).hashToField(),
+            nullifierHash,
+            actionId,
+            proof
+        );
+
     }
 
     function getCurrGroupId() external view returns(uint256) {
