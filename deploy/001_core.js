@@ -2,50 +2,65 @@ require("hardhat");
 const { utils } = require("ethers");
 const { deployments, ethers, getNamedAccounts } = require("hardhat");
 const { parseUnits, formatUnits } = require("ethers").utils;
-const { getTokenAddresses, isFork } = require("../utils/helpers");
+const { getTokenAddresses, isFork,actionID } = require("../utils/helpers");
+const { poseidon_gencontract } = require('circomlibjs');
+const IncrementalBinaryTree = require("../artifacts/contracts/zk-kit/packages/incremental-merkle-tree.sol/contracts/IncrementalBinaryTree.sol/IncrementalBinaryTree.json");
+const MockWorldID = require("../artifacts/contracts/MockWorldID.sol/MockWorldID.json");
 const {
   deployWithConfirmation,
   withConfirmation,
   log,
 } = require("../utils/deploy");
 
-const deployDummyToken = async () => {
+const deployPoseidon = async () => {
   const { deployerAddr, governorAddr } = await getNamedAccounts();
-  await deployWithConfirmation("DummyToken", ["Test Token", "TEST"]);
-  const cDummyToken = await ethers.getContract("DummyToken");
-  const cMockChainlinkOracleFeed = await ethers.getContract(
-    "MockChainlinkOracleFeed"
-  );
-
-  try {
-    await withConfirmation(
-      cDummyToken["setPriceFeed"](cMockChainlinkOracleFeed.address)
-    );
-  } catch (e) {
-    console.log("already set");
-  }
-  await withConfirmation(cMockChainlinkOracleFeed.setDecimals("8"));
+  const sDeployer  = ethers.provider.getSigner(deployerAddr);
+  let tx = await sDeployer.sendTransaction({data : poseidon_gencontract.createCode(2)});
+  tx = await tx.wait();
+  log(`Poseidon deployed to :: ${tx.contractAddress}`); 
+  return tx.contractAddress;
 };
 
-const deployUserRegistry = async () => {
-  // we read addresses that we want to use for our deployment function
-  // const tokens = await getTokenAddresses();
-  // Named accounts allows us to tell which account we want to use for a certain tx
+const deployIBT = async (poseidonAddr) => {
   const { deployerAddr, governorAddr } = await getNamedAccounts();
-  // Signers are used to call signed txs from contracts
-  const sGovernor = await ethers.provider.getSigner(governorAddr);
-  const sDeployer = await ethers.provider.getSigner(deployerAddr);
-  //will deploy a contract and wait for its confirmation
-  await deployWithConfirmation("UserRegistry");
-  // this is how we read the contract
-  const cUserRegistry = await ethers.getContract("UserRegistry");
+  const sDeployer  = ethers.provider.getSigner(deployerAddr);
+  let tx = await sDeployer.sendTransaction({
+    data: IncrementalBinaryTree.bytecode.replace(
+        /__\$\w*?\$__/g,
+        poseidonAddr.slice(2)
+    ),
+  });
+
+  tx = await tx.wait();
+  log(`IBT deployed to :: ${tx.contractAddress}`); 
+  return tx.contractAddress;
+}
+
+const deployMockWorldID = async (ibtAddr) => {
+  const {deployerAddr, governorAddr} = await getNamedAccounts();
+  const sDeployer = ethers.provider.getSigner(deployerAddr);
+  let tx = await sDeployer.sendTransaction({
+    data: MockWorldID.bytecode.replace(/__\$\w*?\$__/g, ibtAddr.slice(2)),
+  })
+  tx = await tx.wait();
+  log(`MockWorldID deployed to :: ${tx.contractAddress}`); 
+  const cMockWorldID = await ethers.getContractAt("MockWorldID",tx.contractAddress);
+  await withConfirmation(cMockWorldID.createGroup(0,20));
+  return tx.contractAddress;
 };
+
+const deployContract = async (worldIDAddr) => {
+  const {deployerAddr} = await getNamedAccounts();
+  await deployWithConfirmation('JomTx',[worldIDAddr,actionID]);
+}
 
 const main = async () => {
-  await deployDummyToken();
-  await deployUserRegistry();
+  const poseidonAddr = await deployPoseidon();
+  const IBTAddr = await deployIBT(poseidonAddr);
+  const worldIDAddr = await deployMockWorldID(IBTAddr);
+  await deployContract(worldIDAddr);
 };
 
 main.id = "001_core";
-main.skip = () => isFork;
+main.skip = () => false;
 module.exports = main;

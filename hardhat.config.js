@@ -41,7 +41,17 @@ task("fund", "Fund accounts on fork")
 
 module.exports = {
   solidity: {
-    version: "0.8.4",
+    compilers: [
+      {
+        version: "0.8.4",
+      },
+      {
+        version: "0.8.10",
+      },
+      {
+        version: "0.8.13",
+      }
+    ],
     settings: {
       optimizer: {
         enabled: true,
@@ -75,7 +85,7 @@ module.exports = {
         process.env.DEPLOYER_PRIVATE_KEY || privateKeys[2],
         process.env.GOVERNOR_PRIVATE_KEY || privateKeys[1],
       ],
-      chainId: 0xafcee83030b95,
+      chainId: 0x2696efe5,
     },
     polygonMumbai: {
       url: `${process.env.MUMBAI_PROVIDER_URL}`,

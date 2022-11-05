@@ -1,0 +1,41 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/JomTx.sol": {
+      "content": "pragma solidity ^0.8.4;\n\nimport { ByteHasher } from './helpers/ByteHasher.sol';\nimport { IWorldID } from './interfaces/IWorldID.sol';\n/*\n//   @dev JomTx contract, implemented for ETH SF hackathon\n//   @title JomTx\n//   @author Carlos Ramos\n//   @note we infer that everyStore using this contract has already been verified.\n*/\ncontract JomTx {\n    using ByteHasher for bytes;\n\n\n    /// @notice Thrown when attempting to reuse a nullifier\n    error InvalidNullifier();\n    error UserVerified();\n\n    event transactionSubmitted(uint256 identityCommitment, string ipfs_uri, address buyer_addr);\n\n    /// @dev The WorldID instance that will be used for verifying proofs\n    IWorldID internal immutable worldId;\n\n    /// @dev The application's action ID\n    uint256 internal immutable actionId;\n\n    /// @dev The WorldID group ID (1)\n    uint256 internal immutable groupId = 1;\n\n    /// @dev Whether a nullifier hash has been used already. Used to prevent double-signaling\n    mapping(uint256 => bool) internal nullifierHashes;\n    mapping(address => bool) internal registeredUser;\n\n    // PROTOCOL VARIABLES //\n    mapping(uint256 => string[]) internal storeTransactions;\n    mapping(address => string[]) internal userTransactions;\n\n\n    /// @param _worldId The WorldID instance that will verify the proofs\n    /// @param _actionId The action ID for your application\n    constructor(IWorldID _worldId, string memory _actionId) {\n        worldId = _worldId;\n        actionId = abi.encodePacked(_actionId).hashToField();\n    }\n\n    /// @dev if store is verified\n    function submitNonVerifiedUserTx (\n        string memory ipfs_uri, \n        uint256 storeSignal,\n        uint256 root,\n        uint256 nullifierHash,\n        uint256[8] calldata proof \n        ) external {\n        storeTransactions[nullifierHash].push(ipfs_uri);\n        worldId.verifyProof(\n            root,\n            groupId,\n            abi.encodePacked(storeSignal).hashToField(),\n            nullifierHash,\n            actionId,\n            proof\n        );\n        emit transactionSubmitted(nullifierHash, ipfs_uri, address(0));\n    }\n\n    /// @dev iff user and store are both verified\n    function submitVerifiedTx (\n        string memory ipfs_uri,\n        address buyer_addr,\n        address storeSignal,\n        uint256 root,\n        uint256 nullifierHash,\n        uint256[8] calldata proof\n        ) external {\n\n        require(registeredUser[buyer_addr], \"User hasnt been verified\");\n\n        worldId.verifyProof(\n            root,\n            groupId,\n            abi.encodePacked(storeSignal,buyer_addr).hashToField(),\n            nullifierHash,\n            actionId,\n            proof\n        );\n\n        storeTransactions[nullifierHash].push(ipfs_uri);\n        userTransactions[buyer_addr].push(ipfs_uri);\n\n        emit transactionSubmitted(nullifierHash, ipfs_uri, buyer_addr);\n    }\n\n    function verifyAsUser (\n        address callerAddr,\n        uint256 root,\n        uint256 nullifierHash,\n        uint256[8] calldata proof\n    ) external {\n        if (nullifierHashes[nullifierHash]) revert InvalidNullifier();\n        if (registeredUser[msg.sender]) revert UserVerified();\n\n        worldId.verifyProof(\n            root,\n            groupId,\n            abi.encodePacked(callerAddr).hashToField(),\n            nullifierHash,\n            actionId,\n            proof\n        );\n\n        nullifierHashes[nullifierHash] = true;\n        registeredUser[msg.sender] = true;\n    }\n\n}"
+    },
+    "contracts/helpers/ByteHasher.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.10;\n\nlibrary ByteHasher {\n    /// @dev Creates a keccak256 hash of a bytestring.\n    /// @param value The bytestring to hash\n    /// @return The hash of the specified value\n    /// @dev `>> 8` makes sure that the result is included in our field\n    function hashToField(bytes memory value) internal pure returns (uint256) {\n        return uint256(keccak256(abi.encodePacked(value))) >> 8;\n    }\n}\n"
+    },
+    "contracts/interfaces/IWorldID.sol": {
+      "content": "//SPDX-License-Identifier: MIT\npragma solidity ^0.8.10;\n\ninterface IWorldID {\n    /// @notice Reverts if the zero-knowledge proof is invalid.\n    /// @param root The of the Merkle tree\n    /// @param groupId The id of the Semaphore group\n    /// @param signalHash A keccak256 hash of the Semaphore signal\n    /// @param nullifierHash The nullifier hash\n    /// @param externalNullifierHash A keccak256 hash of the external nullifier\n    /// @param proof The zero-knowledge proof\n    /// @dev  Note that a double-signaling check is not included here, and should be carried by the caller.\n    function verifyProof(\n        uint256 root,\n        uint256 groupId,\n        uint256 signalHash,\n        uint256 nullifierHash,\n        uint256 externalNullifierHash,\n        uint256[8] calldata proof\n    ) external view;\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

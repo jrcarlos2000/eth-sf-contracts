@@ -1,0 +1,372 @@
+{
+  "address": "0x17cf7a4E4406C89a94e86E9876Aa39cF105AD6d2",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract IWorldID",
+          "name": "_worldId",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_actionId",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidNullifier",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "UserVerified",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "identityCommitment",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "ipfs_uri",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "buyer_addr",
+          "type": "address"
+        }
+      ],
+      "name": "transactionSubmitted",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "getCurrGroupId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getWorldIDAddr",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "incrementGroupIds",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "ipfs_uri",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "storeSignal",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "root",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nullifierHash",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256[8]",
+          "name": "proof",
+          "type": "uint256[8]"
+        }
+      ],
+      "name": "submitNonVerifiedUserTx",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "ipfs_uri",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "buyer_addr",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "storeSignal",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "root",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nullifierHash",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256[8]",
+          "name": "proof",
+          "type": "uint256[8]"
+        }
+      ],
+      "name": "submitVerifiedTx",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "callerAddr",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "root",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nullifierHash",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256[8]",
+          "name": "proof",
+          "type": "uint256[8]"
+        }
+      ],
+      "name": "verifyUser",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xa93fe054f761adb90bee35d855334b06e9d46ef54b573fdc3bfba2c5026e9523",
+  "receipt": {
+    "to": "0x0000000000000000000000000000000000000000",
+    "from": "0x41C929802517f5CE1eD0d6684B579F6E44d277b5",
+    "contractAddress": "0x17cf7a4E4406C89a94e86E9876Aa39cF105AD6d2",
+    "transactionIndex": 0,
+    "gasUsed": "962576",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xad6abbb11277e23b050fd78dd7ddf518440c823f72101ef7ed072bf52f5b9f80",
+    "transactionHash": "0xa93fe054f761adb90bee35d855334b06e9d46ef54b573fdc3bfba2c5026e9523",
+    "logs": [],
+    "blockNumber": 31558,
+    "cumulativeGasUsed": "962576",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0xFdBdDF7c0F2a9291fc8A9517D71cB8743E53b028",
+    "wid_test_1234"
+  ],
+  "numDeployments": 6,
+  "solcInputHash": "40bd19ebee8b14384c2de29428f307fe",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.13+commit.abaa5c0e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract IWorldID\",\"name\":\"_worldId\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_actionId\",\"type\":\"string\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"InvalidNullifier\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UserVerified\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"identityCommitment\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"ipfs_uri\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"buyer_addr\",\"type\":\"address\"}],\"name\":\"transactionSubmitted\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"getCurrGroupId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getWorldIDAddr\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"incrementGroupIds\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"ipfs_uri\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"storeSignal\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"root\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nullifierHash\",\"type\":\"uint256\"},{\"internalType\":\"uint256[8]\",\"name\":\"proof\",\"type\":\"uint256[8]\"}],\"name\":\"submitNonVerifiedUserTx\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"ipfs_uri\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"buyer_addr\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"storeSignal\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"root\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nullifierHash\",\"type\":\"uint256\"},{\"internalType\":\"uint256[8]\",\"name\":\"proof\",\"type\":\"uint256[8]\"}],\"name\":\"submitVerifiedTx\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"callerAddr\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"root\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nullifierHash\",\"type\":\"uint256\"},{\"internalType\":\"uint256[8]\",\"name\":\"proof\",\"type\":\"uint256[8]\"}],\"name\":\"verifyUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"constructor\":{\"params\":{\"_actionId\":\"The action ID for your application\",\"_worldId\":\"The WorldID instance that will verify the proofs\"}},\"submitNonVerifiedUserTx(string,uint256,uint256,uint256,uint256[8])\":{\"details\":\"if store is verified\"},\"submitVerifiedTx(string,address,address,uint256,uint256,uint256[8])\":{\"details\":\"iff user and store are both verified\"}},\"stateVariables\":{\"actionId\":{\"details\":\"The application's action ID\"},\"groupId\":{\"details\":\"The WorldID group ID (1)\"},\"nullifierHashes\":{\"details\":\"Whether a nullifier hash has been used already. Used to prevent double-signaling\"},\"worldId\":{\"details\":\"The WorldID instance that will be used for verifying proofs\"}},\"version\":1},\"userdoc\":{\"errors\":{\"InvalidNullifier()\":[{\"notice\":\"Thrown when attempting to reuse a nullifier\"}]},\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/JomTx.sol\":\"JomTx\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/utils/Counters.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.1 (utils/Counters.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @title Counters\\n * @author Matt Condon (@shrugs)\\n * @dev Provides counters that can only be incremented, decremented or reset. This can be used e.g. to track the number\\n * of elements in a mapping, issuing ERC721 ids, or counting request ids.\\n *\\n * Include with `using Counters for Counters.Counter;`\\n */\\nlibrary Counters {\\n    struct Counter {\\n        // This variable should never be directly accessed by users of the library: interactions must be restricted to\\n        // the library's function. As of Solidity v0.5.2, this cannot be enforced, though there is a proposal to add\\n        // this feature: see https://github.com/ethereum/solidity/issues/4637\\n        uint256 _value; // default: 0\\n    }\\n\\n    function current(Counter storage counter) internal view returns (uint256) {\\n        return counter._value;\\n    }\\n\\n    function increment(Counter storage counter) internal {\\n        unchecked {\\n            counter._value += 1;\\n        }\\n    }\\n\\n    function decrement(Counter storage counter) internal {\\n        uint256 value = counter._value;\\n        require(value > 0, \\\"Counter: decrement overflow\\\");\\n        unchecked {\\n            counter._value = value - 1;\\n        }\\n    }\\n\\n    function reset(Counter storage counter) internal {\\n        counter._value = 0;\\n    }\\n}\\n\",\"keccak256\":\"0xf0018c2440fbe238dd3a8732fa8e17a0f9dce84d31451dc8a32f6d62b349c9f1\",\"license\":\"MIT\"},\"contracts/JomTx.sol\":{\"content\":\"pragma solidity ^0.8.4;\\n\\nimport { ByteHasher } from './helpers/ByteHasher.sol';\\nimport { IWorldID } from './interfaces/IWorldID.sol';\\nimport \\\"@openzeppelin/contracts/utils/Counters.sol\\\";\\n\\n/*\\n//   @dev JomTx contract, implemented for ETH SF hackathon\\n//   @title JomTx\\n//   @author Carlos Ramos\\n//   @note we infer that everyStore using this contract has already been verified.\\n*/\\ncontract JomTx {\\n    using ByteHasher for bytes;\\n    using Counters for Counters.Counter;\\n\\n    /// @notice Thrown when attempting to reuse a nullifier\\n    error InvalidNullifier();\\n    error UserVerified();\\n\\n    event transactionSubmitted(uint256 identityCommitment, string ipfs_uri, address buyer_addr);\\n\\n    /// @dev The WorldID instance that will be used for verifying proofs\\n    IWorldID internal immutable worldId;\\n\\n    /// @dev The application's action ID\\n    uint256 internal immutable actionId;\\n\\n    /// @dev The WorldID group ID (1)\\n    uint256 internal immutable groupId = 1;\\n\\n    /// @dev Whether a nullifier hash has been used already. Used to prevent double-signaling\\n    mapping(uint256 => bool) internal nullifierHashes;\\n    mapping(address => bool) internal registeredUser;\\n\\n    // PROTOCOL VARIABLES //\\n    mapping(uint256 => string[]) internal storeTransactions;\\n    mapping(address => string[]) internal userTransactions;\\n\\n    Counters.Counter private groupIds;\\n\\n    /// @param _worldId The WorldID instance that will verify the proofs\\n    /// @param _actionId The action ID for your application\\n    constructor(IWorldID _worldId, string memory _actionId) {\\n        worldId = _worldId;\\n        actionId = abi.encodePacked(_actionId).hashToField();\\n    }\\n\\n    /// @dev if store is verified\\n    function submitNonVerifiedUserTx (\\n        string memory ipfs_uri, \\n        uint256 storeSignal,\\n        uint256 root,\\n        uint256 nullifierHash,\\n        uint256[8] calldata proof \\n        ) external {\\n\\n        storeTransactions[nullifierHash].push(ipfs_uri);\\n\\n        worldId.verifyProof(\\n            root,\\n            groupId,\\n            abi.encodePacked(storeSignal).hashToField(),\\n            nullifierHash,\\n            actionId,\\n            proof\\n        );\\n\\n        emit transactionSubmitted(nullifierHash, ipfs_uri, address(0));\\n    }\\n\\n    /// @dev iff user and store are both verified\\n    function submitVerifiedTx (\\n        string memory ipfs_uri,\\n        address buyer_addr,\\n        address storeSignal,\\n        uint256 root,\\n        uint256 nullifierHash,\\n        uint256[8] calldata proof\\n        ) external {\\n\\n        require(registeredUser[buyer_addr], \\\"User hasnt been verified\\\");\\n\\n        worldId.verifyProof(\\n            root,\\n            groupId,\\n            abi.encodePacked(storeSignal,buyer_addr).hashToField(),\\n            nullifierHash,\\n            actionId,\\n            proof\\n        );\\n\\n        storeTransactions[nullifierHash].push(ipfs_uri);\\n        userTransactions[buyer_addr].push(ipfs_uri);\\n\\n        emit transactionSubmitted(nullifierHash, ipfs_uri, buyer_addr);\\n    }\\n\\n    function verifyUser (\\n        address callerAddr,\\n        uint256 root,\\n        uint256 nullifierHash,\\n        uint256[8] calldata proof\\n    ) external {\\n        if (nullifierHashes[nullifierHash]) revert InvalidNullifier();\\n        if (registeredUser[msg.sender]) revert UserVerified();\\n\\n        worldId.verifyProof(\\n            root,\\n            groupId,\\n            abi.encodePacked(callerAddr).hashToField(),\\n            nullifierHash,\\n            actionId,\\n            proof\\n        );\\n\\n        nullifierHashes[nullifierHash] = true;\\n        registeredUser[msg.sender] = true;\\n    }\\n\\n    function getCurrGroupId() external view returns(uint256) {\\n        return groupIds.current();\\n    }\\n\\n    function incrementGroupIds() external {\\n        groupIds.increment();\\n    }\\n\\n\\n    function getWorldIDAddr () external view returns(address){\\n        return address(worldId);\\n    }\\n}\",\"keccak256\":\"0x8fbee07c2625ccae2355b6337298761187f4bc0ceaf45e98d4d6f1131f2c0186\"},\"contracts/helpers/ByteHasher.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.10;\\n\\nlibrary ByteHasher {\\n    /// @dev Creates a keccak256 hash of a bytestring.\\n    /// @param value The bytestring to hash\\n    /// @return The hash of the specified value\\n    /// @dev `>> 8` makes sure that the result is included in our field\\n    function hashToField(bytes memory value) internal pure returns (uint256) {\\n        return uint256(keccak256(abi.encodePacked(value))) >> 8;\\n    }\\n}\\n\",\"keccak256\":\"0x225f0627ac21d07df35533f605936035d74aa0f05a632cb8d150d3af50408cd0\",\"license\":\"MIT\"},\"contracts/interfaces/IWorldID.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity ^0.8.10;\\n\\ninterface IWorldID {\\n    /// @notice Reverts if the zero-knowledge proof is invalid.\\n    /// @param root The of the Merkle tree\\n    /// @param groupId The id of the Semaphore group\\n    /// @param signalHash A keccak256 hash of the Semaphore signal\\n    /// @param nullifierHash The nullifier hash\\n    /// @param externalNullifierHash A keccak256 hash of the external nullifier\\n    /// @param proof The zero-knowledge proof\\n    /// @dev  Note that a double-signaling check is not included here, and should be carried by the caller.\\n    function verifyProof(\\n        uint256 root,\\n        uint256 groupId,\\n        uint256 signalHash,\\n        uint256 nullifierHash,\\n        uint256 externalNullifierHash,\\n        uint256[8] calldata proof\\n    ) external view;\\n}\\n\",\"keccak256\":\"0x20fc12dea0b817fb8b7bc1a851082676ed2dcb844d3673d60aa5570da3e1b62e\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60e0604052600160c0908152503480156200001957600080fd5b50604051620014ce380380620014ce83398181016040528101906200003f919062000308565b8173ffffffffffffffffffffffffffffffffffffffff1660808173ffffffffffffffffffffffffffffffffffffffff1681525050620000aa816040516020016200008a9190620003bb565b604051602081830303815290604052620000b960201b620007be1760201c565b60a0818152505050506200043a565b6000600882604051602001620000d0919062000421565b6040516020818303038152906040528051906020012060001c901c9050919050565b6000604051905090565b600080fd5b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000620001338262000106565b9050919050565b6000620001478262000126565b9050919050565b62000159816200013a565b81146200016557600080fd5b50565b60008151905062000179816200014e565b92915050565b600080fd5b600080fd5b6000601f19601f8301169050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b620001d48262000189565b810181811067ffffffffffffffff82111715620001f657620001f56200019a565b5b80604052505050565b60006200020b620000f2565b9050620002198282620001c9565b919050565b600067ffffffffffffffff8211156200023c576200023b6200019a565b5b620002478262000189565b9050602081019050919050565b60005b838110156200027457808201518184015260208101905062000257565b8381111562000284576000848401525b50505050565b6000620002a16200029b846200021e565b620001ff565b905082815260208101848484011115620002c057620002bf62000184565b5b620002cd84828562000254565b509392505050565b600082601f830112620002ed57620002ec6200017f565b5b8151620002ff8482602086016200028a565b91505092915050565b60008060408385031215620003225762000321620000fc565b5b6000620003328582860162000168565b925050602083015167ffffffffffffffff81111562000356576200035562000101565b5b6200036485828601620002d5565b9150509250929050565b600081519050919050565b600081905092915050565b600062000391826200036e565b6200039d818562000379565b9350620003af81856020860162000254565b80840191505092915050565b6000620003c9828462000384565b915081905092915050565b600081519050919050565b600081905092915050565b6000620003f782620003d4565b620004038185620003df565b93506200041581856020860162000254565b80840191505092915050565b60006200042f8284620003ea565b915081905092915050565b60805160a05160c0516110336200049b600039600081816102600152818161046e01526106c00152600081816102aa015281816104ba015261070a0152600081816101050152818161022301528181610431015261068301526110336000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c806313aad95514610067578063376a2481146100855780636b5f4d881461008f578063b4ca1b1b146100ad578063ceeb467e146100c9578063db0fbab9146100e5575b600080fd5b61006f610101565b60405161007c91906108fd565b60405180910390f35b61008d610129565b005b610097610135565b6040516100a49190610931565b60405180910390f35b6100c760048036038101906100c291906109df565b610146565b005b6100e360048036038101906100de9190610b8d565b6103a3565b005b6100ff60048036038101906100fa9190610c37565b610634565b005b60007f0000000000000000000000000000000000000000000000000000000000000000905090565b61013360046107f5565b565b6000610141600461080b565b905090565b60008083815260200190815260200160002060009054906101000a900460ff161561019d576040517f5d904cb200000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600160003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1615610221576040517f6aa7da1600000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b7f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff16633bc778e3847f00000000000000000000000000000000000000000000000000000000000000006102a7886040516020016102939190610d17565b6040516020818303038152906040526107be565b867f0000000000000000000000000000000000000000000000000000000000000000876040518763ffffffff1660e01b81526004016102eb96959493929190610d43565b60006040518083038186803b15801561030357600080fd5b505afa158015610317573d6000803e3d6000fd5b50505050600160008084815260200190815260200160002060006101000a81548160ff02191690831515021790555060018060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555050505050565b600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1661042f576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161042690610e02565b60405180910390fd5b7f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff16633bc778e3847f00000000000000000000000000000000000000000000000000000000000000006104b7888a6040516020016104a3929190610e22565b6040516020818303038152906040526107be565b867f0000000000000000000000000000000000000000000000000000000000000000876040518763ffffffff1660e01b81526004016104fb96959493929190610d43565b60006040518083038186803b15801561051357600080fd5b505afa158015610527573d6000803e3d6000fd5b505050506002600083815260200190815260200160002086908060018154018082558091505060019003906000526020600020016000909190919091509080519060200190610577929190610819565b50600360008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020869080600181540180825580915050600190039060005260206000200160009091909190915090805190602001906105f0929190610819565b507f2b473b3a4e32db50f43e1794a8afedfb90d7e1d8b2069690b13eb53793543ef282878760405161062493929190610ec5565b60405180910390a1505050505050565b6002600083815260200190815260200160002085908060018154018082558091505060019003906000526020600020016000909190919091509080519060200190610680929190610819565b507f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff16633bc778e3847f0000000000000000000000000000000000000000000000000000000000000000610707886040516020016106f39190610f24565b6040516020818303038152906040526107be565b867f0000000000000000000000000000000000000000000000000000000000000000876040518763ffffffff1660e01b815260040161074b96959493929190610d43565b60006040518083038186803b15801561076357600080fd5b505afa158015610777573d6000803e3d6000fd5b505050507f2b473b3a4e32db50f43e1794a8afedfb90d7e1d8b2069690b13eb53793543ef2828660006040516107af93929190610ec5565b60405180910390a15050505050565b60006008826040516020016107d39190610f86565b6040516020818303038152906040528051906020012060001c901c9050919050565b6001816000016000828254019250508190555050565b600081600001549050919050565b82805461082590610fcc565b90600052602060002090601f016020900481019282610847576000855561088e565b82601f1061086057805160ff191683800117855561088e565b8280016001018555821561088e579182015b8281111561088d578251825591602001919060010190610872565b5b50905061089b919061089f565b5090565b5b808211156108b85760008160009055506001016108a0565b5090565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006108e7826108bc565b9050919050565b6108f7816108dc565b82525050565b600060208201905061091260008301846108ee565b92915050565b6000819050919050565b61092b81610918565b82525050565b60006020820190506109466000830184610922565b92915050565b6000604051905090565b600080fd5b600080fd5b610969816108dc565b811461097457600080fd5b50565b60008135905061098681610960565b92915050565b61099581610918565b81146109a057600080fd5b50565b6000813590506109b28161098c565b92915050565b600080fd5b6000819050826020600802820111156109d9576109d86109b8565b5b92915050565b60008060008061016085870312156109fa576109f9610956565b5b6000610a0887828801610977565b9450506020610a19878288016109a3565b9350506040610a2a878288016109a3565b9250506060610a3b878288016109bd565b91505092959194509250565b600080fd5b600080fd5b6000601f19601f8301169050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b610a9a82610a51565b810181811067ffffffffffffffff82111715610ab957610ab8610a62565b5b80604052505050565b6000610acc61094c565b9050610ad88282610a91565b919050565b600067ffffffffffffffff821115610af857610af7610a62565b5b610b0182610a51565b9050602081019050919050565b82818337600083830152505050565b6000610b30610b2b84610add565b610ac2565b905082815260208101848484011115610b4c57610b4b610a4c565b5b610b57848285610b0e565b509392505050565b600082601f830112610b7457610b73610a47565b5b8135610b84848260208601610b1d565b91505092915050565b6000806000806000806101a08789031215610bab57610baa610956565b5b600087013567ffffffffffffffff811115610bc957610bc861095b565b5b610bd589828a01610b5f565b9650506020610be689828a01610977565b9550506040610bf789828a01610977565b9450506060610c0889828a016109a3565b9350506080610c1989828a016109a3565b92505060a0610c2a89828a016109bd565b9150509295509295509295565b60008060008060006101808688031215610c5457610c53610956565b5b600086013567ffffffffffffffff811115610c7257610c7161095b565b5b610c7e88828901610b5f565b9550506020610c8f888289016109a3565b9450506040610ca0888289016109a3565b9350506060610cb1888289016109a3565b9250506080610cc2888289016109bd565b9150509295509295909350565b60008160601b9050919050565b6000610ce782610ccf565b9050919050565b6000610cf982610cdc565b9050919050565b610d11610d0c826108dc565b610cee565b82525050565b6000610d238284610d00565b60148201915081905092915050565b610d3f6101008383610b0e565b5050565b60006101a082019050610d596000830189610922565b610d666020830188610922565b610d736040830187610922565b610d806060830186610922565b610d8d6080830185610922565b610d9a60a0830184610d32565b979650505050505050565b600082825260208201905092915050565b7f55736572206861736e74206265656e2076657269666965640000000000000000600082015250565b6000610dec601883610da5565b9150610df782610db6565b602082019050919050565b60006020820190508181036000830152610e1b81610ddf565b9050919050565b6000610e2e8285610d00565b601482019150610e3e8284610d00565b6014820191508190509392505050565b600081519050919050565b60005b83811015610e77578082015181840152602081019050610e5c565b83811115610e86576000848401525b50505050565b6000610e9782610e4e565b610ea18185610da5565b9350610eb1818560208601610e59565b610eba81610a51565b840191505092915050565b6000606082019050610eda6000830186610922565b8181036020830152610eec8185610e8c565b9050610efb60408301846108ee565b949350505050565b6000819050919050565b610f1e610f1982610918565b610f03565b82525050565b6000610f308284610f0d565b60208201915081905092915050565b600081519050919050565b600081905092915050565b6000610f6082610f3f565b610f6a8185610f4a565b9350610f7a818560208601610e59565b80840191505092915050565b6000610f928284610f55565b915081905092915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052602260045260246000fd5b60006002820490506001821680610fe457607f821691505b602082108103610ff757610ff6610f9d565b5b5091905056fea2646970667358221220eacd37eadfedc2d42f9316105a03ab8ae7421045c01145bcede24d1276226d2264736f6c634300080d0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c806313aad95514610067578063376a2481146100855780636b5f4d881461008f578063b4ca1b1b146100ad578063ceeb467e146100c9578063db0fbab9146100e5575b600080fd5b61006f610101565b60405161007c91906108fd565b60405180910390f35b61008d610129565b005b610097610135565b6040516100a49190610931565b60405180910390f35b6100c760048036038101906100c291906109df565b610146565b005b6100e360048036038101906100de9190610b8d565b6103a3565b005b6100ff60048036038101906100fa9190610c37565b610634565b005b60007f0000000000000000000000000000000000000000000000000000000000000000905090565b61013360046107f5565b565b6000610141600461080b565b905090565b60008083815260200190815260200160002060009054906101000a900460ff161561019d576040517f5d904cb200000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600160003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1615610221576040517f6aa7da1600000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b7f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff16633bc778e3847f00000000000000000000000000000000000000000000000000000000000000006102a7886040516020016102939190610d17565b6040516020818303038152906040526107be565b867f0000000000000000000000000000000000000000000000000000000000000000876040518763ffffffff1660e01b81526004016102eb96959493929190610d43565b60006040518083038186803b15801561030357600080fd5b505afa158015610317573d6000803e3d6000fd5b50505050600160008084815260200190815260200160002060006101000a81548160ff02191690831515021790555060018060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555050505050565b600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1661042f576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161042690610e02565b60405180910390fd5b7f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff16633bc778e3847f00000000000000000000000000000000000000000000000000000000000000006104b7888a6040516020016104a3929190610e22565b6040516020818303038152906040526107be565b867f0000000000000000000000000000000000000000000000000000000000000000876040518763ffffffff1660e01b81526004016104fb96959493929190610d43565b60006040518083038186803b15801561051357600080fd5b505afa158015610527573d6000803e3d6000fd5b505050506002600083815260200190815260200160002086908060018154018082558091505060019003906000526020600020016000909190919091509080519060200190610577929190610819565b50600360008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020869080600181540180825580915050600190039060005260206000200160009091909190915090805190602001906105f0929190610819565b507f2b473b3a4e32db50f43e1794a8afedfb90d7e1d8b2069690b13eb53793543ef282878760405161062493929190610ec5565b60405180910390a1505050505050565b6002600083815260200190815260200160002085908060018154018082558091505060019003906000526020600020016000909190919091509080519060200190610680929190610819565b507f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff16633bc778e3847f0000000000000000000000000000000000000000000000000000000000000000610707886040516020016106f39190610f24565b6040516020818303038152906040526107be565b867f0000000000000000000000000000000000000000000000000000000000000000876040518763ffffffff1660e01b815260040161074b96959493929190610d43565b60006040518083038186803b15801561076357600080fd5b505afa158015610777573d6000803e3d6000fd5b505050507f2b473b3a4e32db50f43e1794a8afedfb90d7e1d8b2069690b13eb53793543ef2828660006040516107af93929190610ec5565b60405180910390a15050505050565b60006008826040516020016107d39190610f86565b6040516020818303038152906040528051906020012060001c901c9050919050565b6001816000016000828254019250508190555050565b600081600001549050919050565b82805461082590610fcc565b90600052602060002090601f016020900481019282610847576000855561088e565b82601f1061086057805160ff191683800117855561088e565b8280016001018555821561088e579182015b8281111561088d578251825591602001919060010190610872565b5b50905061089b919061089f565b5090565b5b808211156108b85760008160009055506001016108a0565b5090565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006108e7826108bc565b9050919050565b6108f7816108dc565b82525050565b600060208201905061091260008301846108ee565b92915050565b6000819050919050565b61092b81610918565b82525050565b60006020820190506109466000830184610922565b92915050565b6000604051905090565b600080fd5b600080fd5b610969816108dc565b811461097457600080fd5b50565b60008135905061098681610960565b92915050565b61099581610918565b81146109a057600080fd5b50565b6000813590506109b28161098c565b92915050565b600080fd5b6000819050826020600802820111156109d9576109d86109b8565b5b92915050565b60008060008061016085870312156109fa576109f9610956565b5b6000610a0887828801610977565b9450506020610a19878288016109a3565b9350506040610a2a878288016109a3565b9250506060610a3b878288016109bd565b91505092959194509250565b600080fd5b600080fd5b6000601f19601f8301169050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b610a9a82610a51565b810181811067ffffffffffffffff82111715610ab957610ab8610a62565b5b80604052505050565b6000610acc61094c565b9050610ad88282610a91565b919050565b600067ffffffffffffffff821115610af857610af7610a62565b5b610b0182610a51565b9050602081019050919050565b82818337600083830152505050565b6000610b30610b2b84610add565b610ac2565b905082815260208101848484011115610b4c57610b4b610a4c565b5b610b57848285610b0e565b509392505050565b600082601f830112610b7457610b73610a47565b5b8135610b84848260208601610b1d565b91505092915050565b6000806000806000806101a08789031215610bab57610baa610956565b5b600087013567ffffffffffffffff811115610bc957610bc861095b565b5b610bd589828a01610b5f565b9650506020610be689828a01610977565b9550506040610bf789828a01610977565b9450506060610c0889828a016109a3565b9350506080610c1989828a016109a3565b92505060a0610c2a89828a016109bd565b9150509295509295509295565b60008060008060006101808688031215610c5457610c53610956565b5b600086013567ffffffffffffffff811115610c7257610c7161095b565b5b610c7e88828901610b5f565b9550506020610c8f888289016109a3565b9450506040610ca0888289016109a3565b9350506060610cb1888289016109a3565b9250506080610cc2888289016109bd565b9150509295509295909350565b60008160601b9050919050565b6000610ce782610ccf565b9050919050565b6000610cf982610cdc565b9050919050565b610d11610d0c826108dc565b610cee565b82525050565b6000610d238284610d00565b60148201915081905092915050565b610d3f6101008383610b0e565b5050565b60006101a082019050610d596000830189610922565b610d666020830188610922565b610d736040830187610922565b610d806060830186610922565b610d8d6080830185610922565b610d9a60a0830184610d32565b979650505050505050565b600082825260208201905092915050565b7f55736572206861736e74206265656e2076657269666965640000000000000000600082015250565b6000610dec601883610da5565b9150610df782610db6565b602082019050919050565b60006020820190508181036000830152610e1b81610ddf565b9050919050565b6000610e2e8285610d00565b601482019150610e3e8284610d00565b6014820191508190509392505050565b600081519050919050565b60005b83811015610e77578082015181840152602081019050610e5c565b83811115610e86576000848401525b50505050565b6000610e9782610e4e565b610ea18185610da5565b9350610eb1818560208601610e59565b610eba81610a51565b840191505092915050565b6000606082019050610eda6000830186610922565b8181036020830152610eec8185610e8c565b9050610efb60408301846108ee565b949350505050565b6000819050919050565b610f1e610f1982610918565b610f03565b82525050565b6000610f308284610f0d565b60208201915081905092915050565b600081519050919050565b600081905092915050565b6000610f6082610f3f565b610f6a8185610f4a565b9350610f7a818560208601610e59565b80840191505092915050565b6000610f928284610f55565b915081905092915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052602260045260246000fd5b60006002820490506001821680610fe457607f821691505b602082108103610ff757610ff6610f9d565b5b5091905056fea2646970667358221220eacd37eadfedc2d42f9316105a03ab8ae7421045c01145bcede24d1276226d2264736f6c634300080d0033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "constructor": {
+        "params": {
+          "_actionId": "The action ID for your application",
+          "_worldId": "The WorldID instance that will verify the proofs"
+        }
+      },
+      "submitNonVerifiedUserTx(string,uint256,uint256,uint256,uint256[8])": {
+        "details": "if store is verified"
+      },
+      "submitVerifiedTx(string,address,address,uint256,uint256,uint256[8])": {
+        "details": "iff user and store are both verified"
+      }
+    },
+    "stateVariables": {
+      "actionId": {
+        "details": "The application's action ID"
+      },
+      "groupId": {
+        "details": "The WorldID group ID (1)"
+      },
+      "nullifierHashes": {
+        "details": "Whether a nullifier hash has been used already. Used to prevent double-signaling"
+      },
+      "worldId": {
+        "details": "The WorldID instance that will be used for verifying proofs"
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "errors": {
+      "InvalidNullifier()": [
+        {
+          "notice": "Thrown when attempting to reuse a nullifier"
+        }
+      ]
+    },
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 116,
+        "contract": "contracts/JomTx.sol:JomTx",
+        "label": "nullifierHashes",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_uint256,t_bool)"
+      },
+      {
+        "astId": 120,
+        "contract": "contracts/JomTx.sol:JomTx",
+        "label": "registeredUser",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_bool)"
+      },
+      {
+        "astId": 125,
+        "contract": "contracts/JomTx.sol:JomTx",
+        "label": "storeTransactions",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_uint256,t_array(t_string_storage)dyn_storage)"
+      },
+      {
+        "astId": 130,
+        "contract": "contracts/JomTx.sol:JomTx",
+        "label": "userTransactions",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_address,t_array(t_string_storage)dyn_storage)"
+      },
+      {
+        "astId": 133,
+        "contract": "contracts/JomTx.sol:JomTx",
+        "label": "groupIds",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_struct(Counter)5_storage"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_string_storage)dyn_storage": {
+        "base": "t_string_storage",
+        "encoding": "dynamic_array",
+        "label": "string[]",
+        "numberOfBytes": "32"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_array(t_string_storage)dyn_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => string[])",
+        "numberOfBytes": "32",
+        "value": "t_array(t_string_storage)dyn_storage"
+      },
+      "t_mapping(t_address,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_mapping(t_uint256,t_array(t_string_storage)dyn_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => string[])",
+        "numberOfBytes": "32",
+        "value": "t_array(t_string_storage)dyn_storage"
+      },
+      "t_mapping(t_uint256,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(Counter)5_storage": {
+        "encoding": "inplace",
+        "label": "struct Counters.Counter",
+        "members": [
+          {
+            "astId": 4,
+            "contract": "contracts/JomTx.sol:JomTx",
+            "label": "_value",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "32"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
