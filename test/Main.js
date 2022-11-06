@@ -12,26 +12,45 @@ describe("Test Contract", async () => {
   // beforeEach(async () => {
 
   // })
-  describe("Jom tx", async ()=>{
-    it("accepts and validates calls from various users", async () => {
-      const {deployerAddr} = await getNamedAccounts();
+  describe("JomTx", async ()=>{
+    it("can register many users", async () => {
+      const {deployerAddr, governorAddr} = await getNamedAccounts();
       const { cJomTx,cMockWorldID } = await loadFixture(defaultFixture);
 
-      await registerIdentity(cMockWorldID,"test-identity",0);
-      let storeSignal = 54;
+      await registerIdentity(cMockWorldID,governorAddr,1);
 
-      const sDeployer = await ethers.provider.getSigner(deployerAddr);
-      let [nullifierHash, proof] = await getProof(actionID, solidityPack(["uint256"],[storeSignal]), "test-identity");
+      let [nullifierHash, proof] = await getProof(actionID, solidityPack(["address"],[governorAddr]), governorAddr);
 
-      const currGroupID = await cJomTx.getCurrGroupId();
-      console.log(currGroupID);
-      await cJomTx.connect(sDeployer).submitNonVerifiedUserTx(
-        "test-cid",
-        storeSignal,
-        await cMockWorldID.getRoot(currGroupID),
+      let currGroupID = await cJomTx.getCurrGroupId();
+
+      await cJomTx.verifyUser(
+        governorAddr,
+        1,
+        await cMockWorldID.getRoot(1),
         nullifierHash,
         proof
       )
+
+      // const tx = await cMockWorldID.createGroup(1,20);
+      // await tx.wait();
+      // const tx2 = await cJomTx.incrementGroupIds();
+      // await tx2.wait();
+      // Verify 
+
+      await registerIdentity(cMockWorldID,deployerAddr,1);
+
+      [nullifierHash, proof] = await getProof(actionID, solidityPack(["address"],[deployerAddr]), deployerAddr);
+
+      // currGroupID = await cJomTx.getCurrGroupId();
+
+      await cJomTx.verifyUser(
+        deployerAddr,
+        1,
+        await cMockWorldID.getRoot(1),
+        nullifierHash,
+        proof
+      )
+
 
 
 

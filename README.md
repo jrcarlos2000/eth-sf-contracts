@@ -1,108 +1,69 @@
-This is a boilerplate for deploying a contract to any network, if some networks are missing please feel free to add them.
-if read carefully this is very easy to use and extremely useful can save tons of time.
+# ETH San Francisco - JomTx 📝
 
-## FEEL FREE TO BRANCH AND ADD SOME GOOD EXAMPLES 
-## CONTRIBUTIONS TO IMPROVE THIS REPO ARE HIGHLY APPRECIATED
-<br>
+## What is JomTx ✨
 
-# `SETTING UP`
+JomTx is a protocol that acts as a ticketing server that uses Proof of Humanity , its meant to be used by web2 & web3 users. There are two agents in our protocol : Users and Stores. Non Crypto users can make use of our API to submit transactions making use of SKALE `zero gas fees` and generate a receipt that can be saved on their devices.
 
-- clone this repo
-```
-npm install --save-dev
-```
--   rename `.env.example` to `.env` 
--   fill all the fields in `.env`
--   add your networks to `hardhat.config.js` as follows
-```javascript
-mainnet : {
-      url : `${process.env.MAINNET_PROVIDER_URL}`,
-      accounts: [
-        process.env.DEPLOYER_PRIVATE_KEY || privateKeys[1],
-        process.env.GOVERNOR_PRIVATE_KEY || privateKeys[1],
-      ],
-      chainId: 1,
-},
-```
--   Add your Scan API KEY for the verification
--   the naming is important so you may check how to name your etherscan networks here https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html
-```javascript
-etherscan: {
-    apiKey: {
-      polygonMumbai: process.env.POLYGONSCAN_API_KEY,
-    },
-  },
-```
 
-# `PLAYING AROUND`
+## Components ( Repositories )⛽️
+1. [JomTx Server](https://github.com/jrcarlos2000/eth-sf-backend)
+  
+    submits transactions and processes receipts, provides the core API of our protocol even allowing web2 users to make use of it
 
--   `deploy.js` and `tx.js` include deployer functions
--   To deploy use the following function :
-```javascript
-await deployWithConfirmation('UserRegistry');
-//OR if you wanna reuse the address after deploying
-const dUserRegistry = deployWithConfirmation('UserRegistry');
-// you might call then dUserRegistry.address
-```
--   All your contracts will go inside `/contracts` , you may open subfolders such as `/contracts/core` , you dont need to add the complete PATH to the deployment function, a name is sufficient
--   You can call your previously defined name accounts as follows
-```javascript
-const {deployerAddr, governorAddr} = await getNamedAccounts();
-```
--   To read the latest deployed contract which is stored in `/deployments` use :
-```javascript 
-//by using this function you are giving the contract an ABI and address which are already stored
-const cUserRegistry = await ethers.getContract('UserRegistry');
-```
--   Another way to read a contract :
-```javascript 
-//will look for ABI of UserRegistry in /artifacts and use the address to read on-chain
-const cUserRegistry = await ethers.getContractAt('UserRegistry','0x30f38906eFa003244bE583e49E362f57130FA056');
-```
--   To perform transaction that is needed to be `DONE` to continue with the deployment script
-```javascript
-await withConfirmation(
-    cUserRegistry.modifyUser('hola', 'emerson',1)
-)
-```
-<br>
+2. [JomTx UI](https://github.com/Gerkep/eth-sf-frontend)
 
-# `FORKING THE MAINNET`
-It's possible to Fork the current status of the mainnet into a local node and run tests on it, this is very useful for projects that need to interact with existing contracts, also useful for testing deployed contracts after a vulnerability has been found. 
-## Requirements 
-- Archive node provider, preferably Alchemy ( add them to your `.env`)
-- Currently Supporting Mainnet, Polygon and BSC, feel free to add more :)
+    We wanted to use a `mobile app` so that users can carry it on their smartphones wherever they go
 
-## Tasks
-### Fund
-Allows you to fund accounts that you added to your `.env` , using the tokens that are declared there as well.
-There is a SANITY CHECK :
-1) check all the tokens that you need are declared in `addresses.js`
-2) make sure there is a funder for each token in `addresses.js`
-3) make sure the decimals of the token are addded to `constants.js`
-4) if the call fails, check if the funders have enough funds and GAS (i.e. ETH).
-# `CLI`
-## deploy
-```
-yarn deploy --network {network name as in config.js}
-```
-## verify
-```
-yarn verify --network {network name as in config.js} {contract address}
-```
-## Node
-```
-yarn node:{network}
-```
-## Deploy on Node
-```
-yarn deploy:{network}
-```
-## Fund on Node
-```
-yarn fund:{network} --amount {AMOUNT} --localaccounts {number of local accounts to fund}
-```
-<br>
+3. [JomTx Subgraph](https://github.com/jrcarlos2000/eth-sf-subgraph)
 
-# `SAMPLE PROJECTS` Still in progress
-## Project Repo
+    indexes transactions of our contract and acts as the main database of the protocol
+
+## **Technology used:**
+
+### **Skale**
+
+Skale is at the core of our protocol because of the esence of its `zero gas fees`, allows us to submit any number of transactions without asking users for funds or require stores to **pay per transaction**
+### **Worldcoin**
+
+Users can make use of other features such as ( receipt-message system, active transaction list retrieval, and Tax Declaration API ) if they are verified on our protocol, We add this layer of verification using Worldcoin's Proof Of Humanity. The whole worldcoin protocol is replicated into skale and a server that mints temporary identities is enabled. 
+### **ENS**
+
+1. When the user heads to the store, it is `MORE CONVENIENT` to give an ENS handle instead of a long hexadecimal number
+2. Verified users can send receipts to their friends through XMTP, ENS is useful for resolving the receiver address
+### **XMTP**
+
+Sometimes when we go on a group meal we need to take a picture of the receipt and send to our group, with XMTP integrated in our protocol, users are able to perform this with 2 clicks. No worries about pictures of your receipts, just ask your friend whats her ENS or Address and you are all set 
+### **The Graph**
+
+Receipts listed on our app are index using the graph, it is at the core of our protocol because it allows users to see the list of their transactions and stores to perform further data handling. Without the graph users wouldnt be able to see their transactions within seconds on their phones. 
+## **Smart contract overview**
+
+We have made use of the Worldcoin Protocol
+
+Smart Contracts:
+
+1. MockWorldID.sol: set of worldcoin protocol that is deployed on skale
+2. JomTx.sol: Acts as registry and gateway to submit receipts on chain.
+    
+    The registry verifies that you are a Human through worldcoin POH
+
+## **Workflow**
+
+![alt text](external-artifacts/workflow.png)
+
+## **Pitch Deck**
+## **Demo video**
+
+[![JomTx Demo](./external-artifacts/demo-yt.png)](https://www.youtube.com/watch?v=IIJPKtMmcBc)
+
+## Deployed Contracts
+
+### skale - eth sf
+
+| Title                         | Address                                    |
+| ----------------------------- | ------------------------------------------ |
+| Verifier20                    | 0xbFA3E40AC6A75c1760130566E5b4DC5EB8890eaC |
+| Poseidon library              | 0x56727656b869A48A4924596800020B9b500CB0fC |
+| IncrementalBinaryTree library | 0xA2CfB62dA0071bb4d57b4Aa64Cf920a35CA99fDD |
+| Semaphore                     | 0x206e2F907c54B49416CD4d26CFCdCa656E528dD2 |
+| ChainStatment                 | 0x6f7cAf248770bA7dc49c6Fb13D1F10658758BED3 |
