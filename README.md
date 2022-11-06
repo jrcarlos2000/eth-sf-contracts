@@ -2,8 +2,20 @@
 
 ## What is JomTx ✨
 
-JomTx is a protocol that acts as a ticketing server that uses Proof of Humanity , its meant to be used by web2 & web3 users. There are two agents in our protocol : Users and Stores. Non Crypto users can make use of our API to submit transactions making use of SKALE `zero gas fees` and generate a receipt that can be saved on their devices.
+JomTx is a receipt & ticketing protocol that uses Proof of Humanity , its meant to be used by web2 & web3 users. There are two agents in our protocol : Users and Stores. Non Crypto stores can make use of our API to submit transactions making use of SKALE `zero gas fees` and generate a receipts that can be saved on non-crypto user devices.
 
+## Inspiration ☁️
+
+Current web2 receipts or ticketing systems are centralized, hard to verify costly, and not green  we wanted to provide web2 and web3 users & stores : 
+
+1. The ability to completely eliminate paper consumption 🌴
+2. Decentralization of the Data 🧑🏽‍💻
+3. Easily verifiable (auditing) ✅
+4. Easy and fast access to their receipts 💨
+5. Ability to send receipts to your web3 friends ✉️
+6. Ability to generate verifiable Tax Declarations 📈
+
+**IMPORTANT** : By allowing non web3 users to make use of our API, we raise awareness about web3, when users look at their receipts and the transactions hash, they will feel curious to check their.
 
 ## Components ( Repositories )⛽️
 1. [JomTx Server](https://github.com/jrcarlos2000/eth-sf-backend)
@@ -36,7 +48,7 @@ Sometimes when we go on a group meal we need to take a picture of the receipt an
 ### **The Graph**
 
 Receipts listed on our app are index using the graph, it is at the core of our protocol because it allows users to see the list of their transactions and stores to perform further data handling. Without the graph users wouldnt be able to see their transactions within seconds on their phones. 
-## **Smart contract overview**
+## **Smart contracts overview**
 
 We have made use of the Worldcoin Protocol
 
@@ -54,7 +66,7 @@ Smart Contracts:
 ## **Pitch Deck**
 ## **Demo video**
 
-[![JomTx Demo](./external-artifacts/demo-yt.png)](https://www.youtube.com/watch?v=IIJPKtMmcBc)
+[![JomTx Demo](./external-artifacts/demo-yt.png)](https://www.youtube.om/watch?v=IIJPKtMmcBc)
 
 ## Deployed Contracts
 
@@ -62,8 +74,6 @@ Smart Contracts:
 
 | Title                         | Address                                    |
 | ----------------------------- | ------------------------------------------ |
-| Verifier20                    | 0xbFA3E40AC6A75c1760130566E5b4DC5EB8890eaC |
-| Poseidon library              | 0x56727656b869A48A4924596800020B9b500CB0fC |
-| IncrementalBinaryTree library | 0xA2CfB62dA0071bb4d57b4Aa64Cf920a35CA99fDD |
-| Semaphore                     | 0x206e2F907c54B49416CD4d26CFCdCa656E528dD2 |
-| ChainStatment                 | 0x6f7cAf248770bA7dc49c6Fb13D1F10658758BED3 |
+| Poseidon                      | 0xbFA3E40AC6A75c1760130566E5b4DC5EB8890eaC |
+| MockWorldID                   | 0x56727656b869A48A4924596800020B9b500CB0fC |
+| JomTx                         | 0xA2CfB62dA0071bb4d57b4Aa64Cf920a35CA99fDD |
