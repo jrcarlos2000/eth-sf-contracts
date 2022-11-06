@@ -28,7 +28,7 @@ contract JomTx {
     uint256 internal immutable actionId;
 
     /// @dev The WorldID group ID (1)
-    uint256 internal immutable groupId = 1;
+    uint256 internal immutable groupId = 0;
 
     /// @dev Whether a nullifier hash has been used already. Used to prevent double-signaling
     mapping(uint256 => bool) internal nullifierHashes;

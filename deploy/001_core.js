@@ -46,6 +46,7 @@ const deployMockWorldID = async (ibtAddr) => {
   log(`MockWorldID deployed to :: ${tx.contractAddress}`); 
   const cMockWorldID = await ethers.getContractAt("MockWorldID",tx.contractAddress);
   await withConfirmation(cMockWorldID.createGroup(0,20));
+
   return tx.contractAddress;
 };
 
