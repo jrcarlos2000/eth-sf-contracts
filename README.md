@@ -78,6 +78,6 @@ Smart Contracts:
 
 | Title                         | Address                                    |
 | ----------------------------- | ------------------------------------------ |
-| Poseidon                      | 0xbFA3E40AC6A75c1760130566E5b4DC5EB8890eaC |
-| MockWorldID                   | 0x56727656b869A48A4924596800020B9b500CB0fC |
-| JomTx                         | 0xA2CfB62dA0071bb4d57b4Aa64Cf920a35CA99fDD |
+| Poseidon                      | 0x8Ff955937788c6bf5ADDeB68FBB80f62935faa7f |
+| MockWorldID                   | 0x953f507651C49440Ad3DFC8Feee66B11171862dF |
+| JomTx                         | 0xd0190Eb9c8a7c24be255BD9445dd07c500d4f6b3 |
