@@ -42,6 +42,9 @@ Users can make use of other features such as (receipt-message system, active tra
 
 1. When the user heads to the store, it is `MORE CONVENIENT` to give an ENS handle instead of a long hexadecimal number
 2. Verified users can send receipts to their friends through XMTP, ENS is useful for resolving the receiver address
+### **Ipfs**
+
+We use ipfs decentralized storage to store the receipts generated from our api, this files can be sent to other users and they can access them wherever they are
 ### **XMTP**
 
 Sometimes when we go on a group meal we need to take a picture of the receipt and send to our group, with XMTP integrated in our protocol, users are able to perform this with 2 clicks. No worries about pictures of your receipts, just ask your friend whats her ENS or Address and you are all set 
