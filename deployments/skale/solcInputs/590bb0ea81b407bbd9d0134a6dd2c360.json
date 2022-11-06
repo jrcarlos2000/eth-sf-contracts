@@ -1,0 +1,44 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/JomTx.sol": {
+      "content": "pragma solidity ^0.8.4;\n\nimport { ByteHasher } from './helpers/ByteHasher.sol';\nimport { IWorldID } from './interfaces/IWorldID.sol';\nimport \"@openzeppelin/contracts/utils/Counters.sol\";\n\n/*\n//   @dev JomTx contract, implemented for ETH SF hackathon\n//   @title JomTx\n//   @author Carlos Ramos\n//   @note we infer that everyStore using this contract has already been verified.\n*/\ncontract JomTx {\n    using ByteHasher for bytes;\n    using Counters for Counters.Counter;\n\n    /// @notice Thrown when attempting to reuse a nullifier\n    error InvalidNullifier();\n    error UserVerified();\n    error UserNotVerified();\n\n    event transactionSubmitted(uint256 identityCommitment, string ipfs_uri, address buyer_addr, string detail);\n\n    /// @dev The WorldID instance that will be used for verifying proofs\n    IWorldID internal immutable worldId;\n\n    /// @dev The application's action ID\n    uint256 internal immutable actionId;\n\n    /// @dev The WorldID group ID (1)\n    uint256 internal immutable groupId = 1;\n\n    /// @dev Whether a nullifier hash has been used already. Used to prevent double-signaling\n    mapping(uint256 => bool) internal nullifierHashes;\n    mapping(address => bool) public registeredUser;\n\n    // PROTOCOL VARIABLES //\n    mapping(uint256 => string[]) internal storeTransactions;\n    mapping(address => string[]) internal userTransactions;\n\n    Counters.Counter private groupIds;\n\n    /// @param _worldId The WorldID instance that will verify the proofs\n    /// @param _actionId The action ID for your application\n    constructor(IWorldID _worldId, string memory _actionId) {\n        worldId = _worldId;\n        actionId = abi.encodePacked(_actionId).hashToField();\n    }\n\n    /// @dev if store is verified\n    function submitNonVerifiedUserTx (\n        string memory ipfs_uri,\n        string memory detail,\n        uint256 storeSignal,\n        uint256 root,\n        uint256 nullifierHash,\n        uint256[8] calldata proof \n        ) external {\n\n        storeTransactions[nullifierHash].push(ipfs_uri);\n\n        worldId.verifyProof(\n            root,\n            storeSignal,\n            abi.encodePacked(storeSignal).hashToField(),\n            nullifierHash,\n            actionId,\n            proof\n        );\n\n        emit transactionSubmitted(nullifierHash, ipfs_uri, address(0),detail);\n    }\n\n    /// @dev iff user and store are both verified\n    function submitVerifiedTx (\n        string memory ipfs_uri,\n        string memory detail,\n        address buyer_addr,\n        uint256 storeSignal,\n        uint256 root,\n        uint256 nullifierHash,\n        uint256[8] calldata proof\n        ) external {\n\n        require(registeredUser[buyer_addr], \"User hasnt been verified\");\n\n        worldId.verifyProof(\n            root,\n            storeSignal,\n            abi.encodePacked(storeSignal).hashToField(),\n            nullifierHash,\n            actionId,\n            proof\n        );\n\n        storeTransactions[nullifierHash].push(ipfs_uri);\n        userTransactions[buyer_addr].push(ipfs_uri);\n\n        emit transactionSubmitted(nullifierHash, ipfs_uri, buyer_addr,detail);\n    }\n\n    function verifyUser (\n        address callerAddr,\n        uint256 groupIdd,\n        uint256 root,\n        uint256 nullifierHash,\n        uint256[8] calldata proof\n    ) external {\n        if (nullifierHashes[nullifierHash]) revert InvalidNullifier();\n        if (registeredUser[msg.sender]) revert UserVerified();\n\n        worldId.verifyProof(\n            root,\n            groupIdd,\n            abi.encodePacked(callerAddr).hashToField(),\n            nullifierHash,\n            actionId,\n            proof\n        );\n\n        nullifierHashes[nullifierHash] = true;\n        registeredUser[msg.sender] = true;\n    }\n\n    function verifyForTaxDeclaration(\n        address callerAddr, \n        uint256 root,\n        uint256 groupIdd,\n        uint256 nullifierHash,\n        uint256[8] calldata proof\n    ) external {\n        if (registeredUser[msg.sender]) revert UserNotVerified();\n\n        worldId.verifyProof(\n            root,\n            groupIdd,\n            abi.encodePacked(callerAddr).hashToField(),\n            nullifierHash,\n            actionId,\n            proof\n        );\n    }\n\n    function getCurrGroupId() external view returns(uint256) {\n        return groupIds.current();\n    }\n\n    function incrementGroupIds() external {\n        groupIds.increment();\n    }\n\n\n    function getWorldIDAddr () external view returns(address){\n        return address(worldId);\n    }\n}"
+    },
+    "contracts/helpers/ByteHasher.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.10;\n\nlibrary ByteHasher {\n    /// @dev Creates a keccak256 hash of a bytestring.\n    /// @param value The bytestring to hash\n    /// @return The hash of the specified value\n    /// @dev `>> 8` makes sure that the result is included in our field\n    function hashToField(bytes memory value) internal pure returns (uint256) {\n        return uint256(keccak256(abi.encodePacked(value))) >> 8;\n    }\n}\n"
+    },
+    "contracts/interfaces/IWorldID.sol": {
+      "content": "//SPDX-License-Identifier: MIT\npragma solidity ^0.8.10;\n\ninterface IWorldID {\n    /// @notice Reverts if the zero-knowledge proof is invalid.\n    /// @param root The of the Merkle tree\n    /// @param groupId The id of the Semaphore group\n    /// @param signalHash A keccak256 hash of the Semaphore signal\n    /// @param nullifierHash The nullifier hash\n    /// @param externalNullifierHash A keccak256 hash of the external nullifier\n    /// @param proof The zero-knowledge proof\n    /// @dev  Note that a double-signaling check is not included here, and should be carried by the caller.\n    function verifyProof(\n        uint256 root,\n        uint256 groupId,\n        uint256 signalHash,\n        uint256 nullifierHash,\n        uint256 externalNullifierHash,\n        uint256[8] calldata proof\n    ) external view;\n}\n"
+    },
+    "@openzeppelin/contracts/utils/Counters.sol": {
+      "content": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.1 (utils/Counters.sol)\n\npragma solidity ^0.8.0;\n\n/**\n * @title Counters\n * @author Matt Condon (@shrugs)\n * @dev Provides counters that can only be incremented, decremented or reset. This can be used e.g. to track the number\n * of elements in a mapping, issuing ERC721 ids, or counting request ids.\n *\n * Include with `using Counters for Counters.Counter;`\n */\nlibrary Counters {\n    struct Counter {\n        // This variable should never be directly accessed by users of the library: interactions must be restricted to\n        // the library's function. As of Solidity v0.5.2, this cannot be enforced, though there is a proposal to add\n        // this feature: see https://github.com/ethereum/solidity/issues/4637\n        uint256 _value; // default: 0\n    }\n\n    function current(Counter storage counter) internal view returns (uint256) {\n        return counter._value;\n    }\n\n    function increment(Counter storage counter) internal {\n        unchecked {\n            counter._value += 1;\n        }\n    }\n\n    function decrement(Counter storage counter) internal {\n        uint256 value = counter._value;\n        require(value > 0, \"Counter: decrement overflow\");\n        unchecked {\n            counter._value = value - 1;\n        }\n    }\n\n    function reset(Counter storage counter) internal {\n        counter._value = 0;\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

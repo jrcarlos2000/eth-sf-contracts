@@ -32,7 +32,7 @@ contract JomTx {
 
     /// @dev Whether a nullifier hash has been used already. Used to prevent double-signaling
     mapping(uint256 => bool) internal nullifierHashes;
-    mapping(address => bool) internal registeredUser;
+    mapping(address => bool) public registeredUser;
 
     // PROTOCOL VARIABLES //
     mapping(uint256 => string[]) internal storeTransactions;
@@ -61,7 +61,7 @@ contract JomTx {
 
         worldId.verifyProof(
             root,
-            groupId,
+            storeSignal,
             abi.encodePacked(storeSignal).hashToField(),
             nullifierHash,
             actionId,
@@ -76,7 +76,7 @@ contract JomTx {
         string memory ipfs_uri,
         string memory detail,
         address buyer_addr,
-        address storeSignal,
+        uint256 storeSignal,
         uint256 root,
         uint256 nullifierHash,
         uint256[8] calldata proof
@@ -101,12 +101,13 @@ contract JomTx {
 
     function verifyUser (
         address callerAddr,
+        uint256 groupIdd,
         uint256 root,
         uint256 nullifierHash,
         uint256[8] calldata proof
     ) external {
         if (nullifierHashes[nullifierHash]) revert InvalidNullifier();
-        if (registeredUser[msg.sender]) revert UserVerified();
+        if (registeredUser[callerAddr]) revert UserVerified();
 
         worldId.verifyProof(
             root,
@@ -118,12 +119,13 @@ contract JomTx {
         );
 
         nullifierHashes[nullifierHash] = true;
-        registeredUser[msg.sender] = true;
+        registeredUser[callerAddr] = true;
     }
 
     function verifyForTaxDeclaration(
         address callerAddr, 
         uint256 root,
+        uint256 groupIdd,
         uint256 nullifierHash,
         uint256[8] calldata proof
     ) external {
@@ -137,7 +139,6 @@ contract JomTx {
             actionId,
             proof
         );
-
     }
 
     function getCurrGroupId() external view returns(uint256) {
