@@ -1,32 +1,32 @@
-# ETH San Francisco - JomTx 📝
+# ETH San Francisco - TruStore🧾
 
-## What is JomTx ✨
+## What is TruStore ✨
 
-JomTx is a receipt & ticketing protocol that uses Proof of Humanity , its meant to be used by web2 & web3 users. There are two agents in our protocol : Users and Stores. Non Crypto stores can make use of our API to submit transactions making use of SKALE `zero gas fees` and generate a receipts that can be saved on non-crypto user devices.
+TruStore is a receipt & review protocol that uses Proof of Humanity, it's meant to be used by web2 & web3 users. There are two agents in our protocol: Users and Stores. Non Crypto stores can make use of our API to submit transactions making use of SKALE `zero gas fees` and generate receipts that can be saved on non-crypto user devices.
 
 ## Inspiration ☁️
 
-Current web2 receipts or ticketing systems are centralized, hard to verify costly, and not green  we wanted to provide web2 and web3 users & stores : 
+Current web2 receipts systems are centralized, hard to verify cost-wise, and not green. We wanted to provide web2 and web3 users & stores with: 
 
 1. The ability to completely eliminate paper consumption 🌴
 2. Decentralization of the Data 🧑🏽‍💻
 3. Easily verifiable (auditing) ✅
 4. Easy and fast access to their receipts 💨
-5. Ability to send receipts to your web3 friends ✉️
+5. Ability to send receipts to their web3 friends ✉️
 6. Ability to generate verifiable Tax Declarations 📈
 
-**IMPORTANT** : By allowing non web3 users to make use of our API, we raise awareness about web3, when users look at their receipts and the transactions hash, they will feel curious to check their.
+**IMPORTANT** : By allowing non web3 users to make use of our API, we raise awareness about web3 - when users look at their receipts and the transactions hash, they will feel curious about the technology.
 
 ## Components ( Repositories )⛽️
-1. [JomTx Server](https://github.com/jrcarlos2000/eth-sf-backend)
+1. [TruStore Server](https://github.com/jrcarlos2000/eth-sf-backend)
   
-    submits transactions and processes receipts, provides the core API of our protocol even allowing web2 users to make use of it
+    submits transactions and processes receipts, provides the core API of our protocol, even allowing web2 users to make use of it
 
-2. [JomTx UI](https://github.com/Gerkep/eth-sf-frontend)
+2. [TruStore UI](https://github.com/Gerkep/eth-sf-frontend)
 
     We wanted to use a `mobile app` so that users can carry it on their smartphones wherever they go
 
-3. [JomTx Subgraph](https://github.com/jrcarlos2000/eth-sf-subgraph)
+3. [TruStore Subgraph](https://github.com/jrcarlos2000/eth-sf-subgraph)
 
     indexes transactions of our contract and acts as the main database of the protocol
 
@@ -34,10 +34,10 @@ Current web2 receipts or ticketing systems are centralized, hard to verify costl
 
 ### **Skale**
 
-Skale is at the core of our protocol because of the esence of its `zero gas fees`, allows us to submit any number of transactions without asking users for funds or require stores to **pay per transaction**
+Skale is at the core of our protocol because of its `zero gas fees`, which allow us to submit any number of transactions without asking users for funds or require stores to **pay per transaction**
 ### **Worldcoin**
 
-Users can make use of other features such as ( receipt-message system, active transaction list retrieval, and Tax Declaration API ) if they are verified on our protocol, We add this layer of verification using Worldcoin's Proof Of Humanity. The whole worldcoin protocol is replicated into skale and a server that mints temporary identities is enabled. 
+Users can make use of other features such as (receipt-message system, active transaction list retrieval, and Tax Declaration API) if they are verified on our protocol. We add this layer of verification using Worldcoin's Proof Of Humanity. The whole worldcoin protocol is replicated into skale and a server that mints temporary identities is enabled. 
 ### **ENS**
 
 1. When the user heads to the store, it is `MORE CONVENIENT` to give an ENS handle instead of a long hexadecimal number
@@ -47,7 +47,7 @@ Users can make use of other features such as ( receipt-message system, active tr
 Sometimes when we go on a group meal we need to take a picture of the receipt and send to our group, with XMTP integrated in our protocol, users are able to perform this with 2 clicks. No worries about pictures of your receipts, just ask your friend whats her ENS or Address and you are all set 
 ### **The Graph**
 
-Receipts listed on our app are index using the graph, it is at the core of our protocol because it allows users to see the list of their transactions and stores to perform further data handling. Without the graph users wouldnt be able to see their transactions within seconds on their phones. 
+Receipts listed on our app are indexed using the graph. It is at the core of our protocol because it allows users to see the list of their transactions and stores to perform further data handling. Without the graph users wouldn't be able to see their transactions within seconds on their phones. 
 ## **Smart contracts overview**
 
 We have made use of the Worldcoin Protocol
@@ -64,9 +64,10 @@ Smart Contracts:
 ![alt text](external-artifacts/workflow.png)
 
 ## **Pitch Deck**
+[TruStore Pitch](https://pitch.com/public/e553e18c-d883-4665-8ff5-09b544dbfaac)
 ## **Demo video**
 
-[![JomTx Demo](./external-artifacts/demo-yt.png)](https://www.youtube.om/watch?v=IIJPKtMmcBc)
+[![TruStore Demo](./external-artifacts/demo-yt.png)](https://www.youtube.om/watch?v=IIJPKtMmcBc)
 
 ## Deployed Contracts
 
