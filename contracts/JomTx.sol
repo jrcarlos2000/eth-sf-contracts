@@ -28,7 +28,7 @@ contract JomTx {
     uint256 internal immutable actionId;
 
     /// @dev The WorldID group ID (1)
-    uint256 internal immutable groupId = 0;
+    uint256 internal immutable groupId = 1;
 
     /// @dev Whether a nullifier hash has been used already. Used to prevent double-signaling
     mapping(uint256 => bool) internal nullifierHashes;
@@ -101,7 +101,6 @@ contract JomTx {
 
     function verifyUser (
         address callerAddr,
-        uint256 groupIdd,
         uint256 root,
         uint256 nullifierHash,
         uint256[8] calldata proof
@@ -125,7 +124,6 @@ contract JomTx {
     function verifyForTaxDeclaration(
         address callerAddr, 
         uint256 root,
-        uint256 groupIdd,
         uint256 nullifierHash,
         uint256[8] calldata proof
     ) external {
